@@ -1,6 +1,6 @@
 {
   "name": "security-audit",
-  "version": "0.0.1",
+  "version": "0.0.6",
   "description": "Audits npm and yarn projects",
   "keywords": [
     "audit",
@@ -19,13 +19,13 @@
   "homepage": "https://github.com/hupe1980/security-audit#readme",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
+  "bin": {
+    "security-audit": "bin/security-audit.js"
+  },
   "files": [
     "lib",
     "bin"
   ],
-  "bin": {
-    "security-audit": "bin/security-audit"
-  },
   "scripts": {
     "build": "rimraf lib && tsc",
     "build:watch": "rimraf lib && tsc -w",

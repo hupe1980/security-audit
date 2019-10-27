@@ -47,7 +47,7 @@ const { argv } = yargs
       type: 'array'
     },
     l: {
-      alias: 'auditLevel',
+      alias: 'audit-level',
       default: 'low',
       describe:
         'Fail an audit only if the results include a vulnerability with the given level or higher',
