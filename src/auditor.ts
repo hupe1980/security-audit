@@ -56,7 +56,7 @@ export abstract class Auditor {
 
   protected abstract isRetryErrorMessage(message: string): boolean;
 
-  public async run(attempt: number = 0): Promise<any> {
+  public async run(attempt: number = 0): Promise<ParseResult> {
     try {
       return await this.audit();
     } catch (error) {
