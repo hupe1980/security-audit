@@ -1,0 +1,55 @@
+{
+  "name": "security-audit",
+  "version": "0.0.1",
+  "description": "Audits npm and yarn projects",
+  "keywords": [
+    "audit",
+    "security",
+    "ci",
+    "yarn",
+    "npm"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hupe1980/security-audit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hupe1980/security-audit/issues"
+  },
+  "homepage": "https://github.com/hupe1980/security-audit#readme",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib",
+    "bin"
+  ],
+  "bin": {
+    "security-audit": "bin/security-audit"
+  },
+  "scripts": {
+    "build": "rimraf lib && tsc",
+    "build:watch": "rimraf lib && tsc -w",
+    "prepare": "npm run build && npm run test"
+  },
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "cli-table": "^0.3.1",
+    "cross-spawn": "^7.0.1",
+    "figlet": "^1.2.4",
+    "semver": "^6.3.0",
+    "yargs": "^14.2.0"
+  },
+  "devDependencies": {
+    "@types/cli-table": "^0.3.0",
+    "@types/cross-spawn": "^6.0.1",
+    "@types/figlet": "^1.2.0",
+    "@types/jest": "^24.0.20",
+    "@types/node": "^12.11.7",
+    "@types/semver": "^6.2.0",
+    "@types/yargs": "^13.0.3",
+    "jest": "^24.9.0",
+    "rimraf": "^3.0.0",
+    "ts-jest": "^24.1.0",
+    "typescript": "^3.6.4"
+  }
+}
