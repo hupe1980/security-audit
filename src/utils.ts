@@ -5,8 +5,12 @@ import { AuditLevel, PackageManager } from './types';
 
 export function getPackageManagerName(
   packageManager: string,
-  directory: string = './'
+  directory = './'
 ): PackageManager {
+  function getPath(fileName: string): string {
+    return path.resolve(directory, fileName);
+  }
+
   switch (packageManager) {
     case 'npm':
       return 'npm';
@@ -15,10 +19,6 @@ export function getPackageManagerName(
       return 'yarn';
 
     case 'auto': {
-      function getPath(fileName: string): string {
-        return path.resolve(directory, fileName);
-      }
-
       const packageLockExists = fs.existsSync(getPath('package-lock.json'));
       if (packageLockExists) return 'npm';
 
@@ -38,63 +38,63 @@ export function getPackageManagerName(
   }
 }
 
-export function getYarnVersion() {
+export function getYarnVersion(): string {
   return childProcess
     .execSync('yarn -v')
     .toString()
     .replace('\n', '');
 }
 
-export function getNpmVersion() {
+export function getNpmVersion(): string {
   return childProcess
     .execSync('npm -v')
     .toString()
     .replace('\n', '');
 }
 
-export function mapAuditLevel(auditLevel: AuditLevel) {
-  switch (auditLevel) {
-    case 'info':
-      return {
-        info: true,
-        low: true,
-        moderate: true,
-        high: true,
-        critical: true
-      };
-    case 'low':
-      return {
-        info: false,
-        low: true,
-        moderate: true,
-        high: true,
-        critical: true
-      };
-    case 'moderate':
-      return {
-        info: false,
-        low: false,
-        moderate: true,
-        high: true,
-        critical: true
-      };
-    case 'high':
-      return {
-        info: false,
-        low: false,
-        moderate: false,
-        high: true,
-        critical: true
-      };
-    case 'critical':
-      return {
-        info: false,
-        low: false,
-        moderate: false,
-        high: false,
-        critical: true
-      };
-    default:
-      throw new Error(`Invalid auditLevel: ${auditLevel}!`);
-  }
-}
+export function mapAuditLevel(auditLevel: AuditLevel): { [key: string]: boolean } {
+         switch (auditLevel) {
+           case 'info':
+             return {
+               info: true,
+               low: true,
+               moderate: true,
+               high: true,
+               critical: true
+             };
+           case 'low':
+             return {
+               info: false,
+               low: true,
+               moderate: true,
+               high: true,
+               critical: true
+             };
+           case 'moderate':
+             return {
+               info: false,
+               low: false,
+               moderate: true,
+               high: true,
+               critical: true
+             };
+           case 'high':
+             return {
+               info: false,
+               low: false,
+               moderate: false,
+               high: true,
+               critical: true
+             };
+           case 'critical':
+             return {
+               info: false,
+               low: false,
+               moderate: false,
+               high: false,
+               critical: true
+             };
+           default:
+             throw new Error(`Invalid auditLevel: ${auditLevel}!`);
+         }
+       }

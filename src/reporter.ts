@@ -16,7 +16,7 @@ export class CliReporter implements Reporter {
 
   public parse(advisories: AuditAdvisory[]): ParseResult {
     let exitCode = 0;
-    let output = [];
+    const output = [];
 
     const optionsTable = new Table();
 

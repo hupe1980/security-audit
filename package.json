@@ -1,6 +1,6 @@
 {
   "name": "security-audit",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Audits npm and yarn projects",
   "keywords": [
     "audit",
@@ -29,7 +29,8 @@
   "scripts": {
     "build": "rimraf lib && tsc",
     "build:watch": "rimraf lib && tsc -w",
-    "prepare": "npm run build && npm run test"
+    "prepare": "npm run build && npm run test",
+    "lint": "eslint '*/**/*.{ts,tsx}' --report-unused-disable-directives"
   },
   "dependencies": {
     "chalk": "^2.4.2",
@@ -47,6 +48,9 @@
     "@types/node": "^12.11.7",
     "@types/semver": "^6.2.0",
     "@types/yargs": "^13.0.3",
+    "@typescript-eslint/eslint-plugin": "^2.5.0",
+    "@typescript-eslint/parser": "^2.5.0",
+    "eslint": "^6.6.0",
     "jest": "^24.9.0",
     "rimraf": "^3.0.0",
     "ts-jest": "^24.1.0",

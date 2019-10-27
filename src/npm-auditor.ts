@@ -14,12 +14,12 @@ export class NpmAuditor extends Auditor {
 
   protected async audit(): Promise<ParseResult> {
     let stdoutBuffer = '';
-    function outListener(data: any) {
+    function outListener(data: string): void {
       stdoutBuffer = stdoutBuffer.concat(data);
     }
 
     const stderrBuffer: string[] = [];
-    function errListener(line: any) {
+    function errListener(line: string): void {
       stderrBuffer.push(line);
     }
 

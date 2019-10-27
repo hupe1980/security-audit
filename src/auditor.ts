@@ -1,4 +1,4 @@
-import * as child_process from 'child_process';
+import { SpawnOptions } from 'child_process';
 import spawn from 'cross-spawn';
 import chalk from 'chalk';
 
@@ -56,7 +56,7 @@ export abstract class Auditor {
 
   protected abstract isRetryErrorMessage(message: string): boolean;
 
-  public async run(attempt: number = 0): Promise<ParseResult> {
+  public async run(attempt = 0): Promise<ParseResult> {
     try {
       return await this.audit();
     } catch (error) {
@@ -82,10 +82,10 @@ export abstract class Auditor {
   protected async runProgram(
     command: string,
     args: ReadonlyArray<string>,
-    options: child_process.SpawnOptions,
+    options: SpawnOptions,
     stdoutListener: Function,
     stderrListener: Function
-  ) {
+  ): Promise<void> {
     return new Promise(resolve => {
       const proc = spawn(command, args, options);
 

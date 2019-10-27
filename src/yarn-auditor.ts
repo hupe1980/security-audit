@@ -13,9 +13,9 @@ export class YarnAuditor extends Auditor {
   }
 
   protected async audit(): Promise<ParseResult> {
-    let advisories: AuditAdvisory[] = [];
+    const advisories: AuditAdvisory[] = [];
 
-    function outListener(line: any) {
+    function outListener(line: string): void {
       const { type, data } = JSON.parse(line);
 
       if (type === 'auditAdvisory') {
@@ -23,9 +23,11 @@ export class YarnAuditor extends Auditor {
       }
     }
 
-    function errListener(line: any) {
-      if (line.type === 'error') {
-        throw new Error(`Invocation of yarn audit failed:\n${line.data}`);
+    function errListener(line: string): void {
+      const { type, data } = JSON.parse(line);
+
+      if (type === 'error') {
+        throw new Error(`Invocation of yarn audit failed:\n${data}`);
       }
     }
 
