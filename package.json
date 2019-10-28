@@ -1,7 +1,8 @@
 {
   "name": "security-audit",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Audits npm and yarn projects",
+  "license": "MIT",
   "keywords": [
     "audit",
     "security",
